@@ -33,6 +33,12 @@ public class UserDao implements Dao<String, User> {
     private static final String DELETE_USER = "DELETE FROM \"user\" WHERE user_id = ?";
     private static final String FIND_ALL = "SELECT * FROM \"user\"";
 
+    /**
+     * Updates an existing {@link User} entity in the database.
+     *
+     * @param user The User entity to be updated.
+     * @return The updated User entity.
+     */
     @Override
     @SaveCache
     public User save(User user) {
@@ -63,7 +69,12 @@ public class UserDao implements Dao<String, User> {
         }
     }
 
-
+    /**
+     * Updates an existing {@link User} entity in the database.
+     *
+     * @param user The User entity to be updated.
+     * @return The updated User entity.
+     */
     @Override
     @UpdateInCache
     public User update(User user) {
@@ -86,6 +97,12 @@ public class UserDao implements Dao<String, User> {
         }
     }
 
+    /**
+     * Finds a {@link User} entity by its ID in the database.
+     *
+     * @param id The ID of the User entity to find.
+     * @return An {@link Optional} containing the found User entity, or an empty Optional if not found.
+     */
     @Override
     @FindInCache
     public Optional<User> findById(String id) {
@@ -107,6 +124,12 @@ public class UserDao implements Dao<String, User> {
         return Optional.empty();
     }
 
+    /**
+     * Deletes a {@link User} entity by its ID from the database.
+     *
+     * @param id The ID of the User entity to delete.
+     * @return {@code true} if the User entity was deleted, {@code false} otherwise.
+     */
     @RemoveInCache
     @Override
     public boolean deleteById(String id) {
@@ -128,6 +151,11 @@ public class UserDao implements Dao<String, User> {
         }
     }
 
+    /**
+     * Retrieves a list of all {@link User} entities from the database.
+     *
+     * @return A list of all User entities.
+     */
     @Override
     public List<User> findAll() {
         try (var connection = ConnectionManager.get();
