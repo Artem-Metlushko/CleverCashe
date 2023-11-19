@@ -27,8 +27,8 @@ public class UserDao implements Dao<String, User> {
 
     private final UuidWrapper uuidWrapper;
 
-    private static final String CREATE_USER = "INSERT INTO \"user\" (user_id, firstName, lastName, surName, address, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_USER = "UPDATE  \"user\" SET firstName = ?, lastName = ?, surName = ?, address = ?, phoneNumber = ? WHERE user_id = ?;";
+    private static final String CREATE_USER = "INSERT INTO \"user\" (user_id, firstName, lastName, surName, email, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE_USER = "UPDATE  \"user\" SET firstName = ?, lastName = ?, surName = ?, email = ?, phoneNumber = ? WHERE user_id = ?;";
     private static final String FIND_BY_ID = "SELECT * FROM \"user\" WHERE user_id = ?";
     private static final String DELETE_USER = "DELETE FROM \"user\" WHERE user_id = ?";
     private static final String FIND_ALL = "SELECT * FROM \"user\"";

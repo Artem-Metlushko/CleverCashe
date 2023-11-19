@@ -6,7 +6,7 @@ import org.metlushko.cash.dao.impl.UserDao;
 import org.metlushko.cash.dto.UserDto;
 import org.metlushko.cash.entity.User;
 import org.metlushko.cash.mapper.UserMapper;
-import org.metlushko.cash.validation.EmailConstraint;
+import org.metlushko.cash.validation.EmailValidator;
 
 import java.util.List;
 
@@ -17,8 +17,8 @@ public class UserService {
     private final UserDao userDao;
 
     private final UserMapper userMapper;
-
-    public User save(@EmailConstraint UserDto userDto) {
+    @EmailValidator
+    public User save( UserDto userDto) {
 
         User user = userMapper.toEntity(userDto);
 
@@ -31,6 +31,7 @@ public class UserService {
 
     }
 
+    @EmailValidator
     public User update(UserDto userDto, User user) {
 
         User updateUser = userMapper.toEntity(user, userDto);

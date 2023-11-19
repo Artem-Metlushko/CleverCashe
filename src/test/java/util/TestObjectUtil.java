@@ -25,7 +25,7 @@ public class TestObjectUtil {
     private String surName = "Cobainvich";
 
     @Builder.Default
-    private String address = "Milan";
+    private String email = "1584@mail.ru";
 
     @Builder.Default
     private String phoneNumber = "5554-12345";
@@ -36,13 +36,13 @@ public class TestObjectUtil {
                 .firstName(firstName)
                 .lastName(lastName)
                 .surName(surName)
-                .email(address)
+                .email(email)
                 .phoneNumber(phoneNumber)
                 .build();
     }
 
     public UserDto buildUserDto() {
-        return new UserDto(firstName, lastName, surName, address, phoneNumber);
+        return new UserDto(firstName, lastName, surName, email, phoneNumber);
     }
 
 

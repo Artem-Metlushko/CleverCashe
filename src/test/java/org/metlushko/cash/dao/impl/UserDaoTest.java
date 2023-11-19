@@ -35,7 +35,7 @@ class UserDaoTest {
                 firstName   VARCHAR(255) NOT NULL,
                 lastName    VARCHAR(255) NOT NULL,
                 surName     VARCHAR(255) NOT NULL,
-                address     VARCHAR(255) NOT NULL,
+                email     VARCHAR(255) NOT NULL,
                 phoneNumber VARCHAR(255) NOT NULL
             );
 
