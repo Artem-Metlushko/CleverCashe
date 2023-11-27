@@ -40,11 +40,22 @@ dependencies {
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
     testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 
-
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
     implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0'
     implementation 'org.aspectj:aspectjrt:1.9.19'
     implementation 'org.aspectj:aspectjweaver:1.9.19'
+
+    // https://mvnrepository.com/artifact/com.itextpdf/kernel
+    implementation 'com.itextpdf:kernel:7.0.2'
+    implementation 'com.itextpdf:io:7.0.2'
+    implementation 'com.itextpdf:layout:7.0.2'
+    implementation 'com.itextpdf:forms:7.0.2'
+    implementation 'com.itextpdf:pdfa:7.0.2'
+    implementation 'com.itextpdf:sign:7.0.2'
+    implementation 'com.itextpdf:barcodes:7.0.2'
+    implementation 'com.itextpdf:font-asian:7.0.2'
+    implementation 'com.itextpdf:hyph:7.0.2'
+
 
 }
 
