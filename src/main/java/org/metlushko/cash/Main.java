@@ -3,6 +3,7 @@ package org.metlushko.cash;
 import org.metlushko.cash.dao.impl.UserDao;
 import org.metlushko.cash.dto.UserDto;
 import org.metlushko.cash.entity.User;
+import org.metlushko.cash.factory.FactoryGeneric;
 import org.metlushko.cash.mapper.UserMapperImpl;
 import org.metlushko.cash.pdf.PdfPrint;
 import org.metlushko.cash.service.UserService;
@@ -15,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         DatabaseInitializerUtil.runSqlScripts();
 
-        UuidWrapper uuidWrapper = new UuidWrapper();
+        UuidWrapper uuidWrapper = FactoryGeneric.getUuidWrapper();
         UserDao userDao = new UserDao(uuidWrapper);
         UserService userService = new UserService(userDao, new UserMapperImpl());
         UserDto userDto = new UserDto("BOb", "Bob", "Bob", "394723@mail.ru", "11111111111");

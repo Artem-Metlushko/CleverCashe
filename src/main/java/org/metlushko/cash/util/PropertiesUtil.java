@@ -1,18 +1,17 @@
 package org.metlushko.cash.util;
 
+import lombok.experimental.UtilityClass;
 import org.metlushko.cash.exception.PropertiesLoadException;
 
 import java.io.IOException;
 import java.util.Properties;
 
+@UtilityClass
 public final class PropertiesUtil {
-    private static final Properties PROPERTIES = new Properties();
+    private static Properties PROPERTIES = new Properties();
+
     static {
         loadProperties();
-    }
-
-    private PropertiesUtil() {
-        throw new IllegalStateException("Utility class");
     }
 
     public static String get(String key) {

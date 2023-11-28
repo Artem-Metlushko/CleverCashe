@@ -17,7 +17,7 @@ public class FactoryService {
 
 
     public static UserService getUserService() {
-        if (userService == null) {
+        if (userService != null) {
             return userService;
         }
         synchronized (FactoryService.class) {

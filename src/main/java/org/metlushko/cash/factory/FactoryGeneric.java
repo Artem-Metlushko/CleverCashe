@@ -15,7 +15,7 @@ public class FactoryGeneric {
 
 
     public static UuidWrapper getUuidWrapper() {
-        if (uuidWrapper == null) {
+        if (uuidWrapper != null) {
             return uuidWrapper;
         }
         synchronized (FactoryGeneric.class) {
@@ -27,7 +27,7 @@ public class FactoryGeneric {
     }
 
     public static UserMapper getUserMapper() {
-        if (userMapper == null) {
+        if (userMapper != null) {
             return userMapper;
         }
         synchronized (FactoryGeneric.class) {
