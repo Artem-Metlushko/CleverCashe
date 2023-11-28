@@ -18,7 +18,6 @@ import java.util.List;
 public class UserService {
 
     private final UserDao userDao;
-
     private final UserMapper userMapper;
 
     /**

@@ -13,7 +13,7 @@ public class FactoryService {
     private static volatile UserService userService;
     public static final UserMapper userMapper = FactoryGeneric.getUserMapper();
     public static final UuidWrapper uuidWrapper = FactoryGeneric.getUuidWrapper();
-    public static final UserDao userDao = FactoryDao.getDaoInstance(UserDao.class, uuidWrapper);
+    public static final UserDao userDao = FactoryDao.getUserDao();
 
 
     public static UserService getUserService() {
