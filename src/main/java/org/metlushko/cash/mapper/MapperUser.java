@@ -1,5 +1,6 @@
 package org.metlushko.cash.mapper;
 
+import lombok.experimental.UtilityClass;
 import org.metlushko.cash.entity.User;
 
 import java.sql.ResultSet;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 /**
  * Utility class for mapping {@link ResultSet} data to {@link User} entities.
  */
+@UtilityClass
 public class MapperUser {
 
     /**
@@ -17,6 +19,7 @@ public class MapperUser {
      * @return A User entity populated with data from the ResultSet.
      * @throws SQLException If a database access error occurs or this method is called on a closed result set.
      */
+
     public static User getUser(ResultSet rs) throws SQLException {
         User user = new User();
         user.setUserId(rs.getString(1));

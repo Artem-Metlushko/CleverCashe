@@ -8,7 +8,7 @@ import org.metlushko.cash.util.UuidWrapper;
 
 @UtilityClass
 public class FactoryDao {
-    public static UuidWrapper uuidWrapper = FactoryGeneric.getUuidWrapper();
+    public static final UuidWrapper uuidWrapper = FactoryGeneric.getUuidWrapper();
 
     private static volatile UserDao userDao;
 

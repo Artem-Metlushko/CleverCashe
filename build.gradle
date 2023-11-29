@@ -24,6 +24,9 @@ ext {
 }
 
 dependencies {
+    annotationProcessor 'io.soabase.record-builder:record-builder-processor:35'
+    compileOnly 'io.soabase.record-builder:record-builder-core:35'
+
     implementation "org.projectlombok:lombok:${lombokVersion}"
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
     testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")

@@ -1,6 +1,7 @@
 package org.metlushko.cash;
 
 import org.metlushko.cash.dto.UserDto;
+import org.metlushko.cash.dto.UserDtoBuilder;
 import org.metlushko.cash.entity.User;
 import org.metlushko.cash.factory.FactoryService;
 import org.metlushko.cash.pdf.PdfPrint;
@@ -15,8 +16,13 @@ public class Main {
 
         UserService userService = FactoryService.getUserService();
 
-        UserDto userDto = new UserDto("BOb", "Bob", "Bob", "394723@mail.ru", "11111111111");
-
+        UserDto userDto = UserDtoBuilder.builder()
+                .firstName("Bob")
+                .lastName("Bob")
+                .surName("Bobic")
+                .email("3945612@mail.ru")
+                .phoneNumber("1212312")
+                .build();
 
         User saveUser = userService.save(userDto);
         userService.findById(saveUser.getUserId());

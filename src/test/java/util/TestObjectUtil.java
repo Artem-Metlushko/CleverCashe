@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.metlushko.cash.dto.UserDto;
+import org.metlushko.cash.dto.UserDtoBuilder;
 import org.metlushko.cash.entity.User;
 
 @Data
@@ -41,8 +42,15 @@ public class TestObjectUtil {
                 .build();
     }
 
-    public UserDto buildUserDto() {
-        return new UserDto(firstName, lastName, surName, email, phoneNumber);
+    public UserDto buildUserDto(){
+        return UserDtoBuilder.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .surName(surName)
+                .email(email)
+                .phoneNumber(phoneNumber)
+                .build();
+
     }
 
 
