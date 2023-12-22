@@ -55,6 +55,10 @@ public class UserService {
         return userDao.update(updateUser);
     }
 
+    public User update(User user) {
+        return userDao.update(user);
+    }
+
     /**
      * Deletes a user by their ID.
      *
