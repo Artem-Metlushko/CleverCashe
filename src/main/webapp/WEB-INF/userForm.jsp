@@ -8,15 +8,15 @@
 
 <body>
 <header>
-    <li><a href="<%=request.getContextPath()%>/api/list">Users</a></li>
+    <li><a href="<%=request.getContextPath()%>/list">Users</a></li>
     &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 </header>
 
 <c:if test="${requestScope.user != null}">
-<form action="/api/updateUser" method="post">
+<form action="/updateUser" method="post">
     </c:if>
     <c:if test="${requestScope.user == null}">
-    <form action="/api/insertUser" method="post">
+    <form action="/insertUser" method="post">
         </c:if>
 
         <caption>
@@ -33,19 +33,32 @@
         </c:if>
 
         <fieldset class="form-group">
-            <label>User Name</label> <input type="text"
-                                            value="<c:out value='${requestScope.user.name}' />"
-                                            name="name" required="required">
+            <label>User firstName</label> <input type="text"
+                                            value="<c:out value='${requestScope.user.firstName}' />"
+                                            name="firstName" >
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label>User lastName</label> <input type="text"
+                                             value="<c:out value='${requestScope.user.lastName}' />"
+                                             name="lastName">
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label>User surName</label> <input type="text"
+                                             value="<c:out value='${requestScope.user.surName}' />"
+                                             name="surName">
         </fieldset>
 
         <fieldset class="form-group">
             <label>User Email</label> <input type="text"
-                                             value="<c:out value='${requestScope.user.address}' />"
-                                             name="address">
+                                             value="<c:out value='${requestScope.user.email}' />"
+                                             name="email">
         </fieldset>
 
+
         <fieldset class="form-group">
-            <label>User Country</label> <input type="text"
+            <label>User phoneNumber</label> <input type="text"
                                                value="<c:out value='${requestScope.user.phoneNumber}' />"
                                                name="phoneNumber">
         </fieldset>

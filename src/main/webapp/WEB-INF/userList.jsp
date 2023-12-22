@@ -5,15 +5,16 @@
 
 </head>
 <body>
-<a href="<%=request.getContextPath()%>/api/new">Add New User</a>
+<a href="<%=request.getContextPath()%>/new">Add New User</a>
 <table>
     <thead>
     <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>address</th>
+        <th>userId</th>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>surName</th>
+        <th>email</th>
         <th>phoneNumber</th>
-        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -21,8 +22,10 @@
 
         <tr>
             <td><c:out value="${user.userId}"/></td>
-            <td><c:out value="${user.name}"/></td>
-            <td><c:out value="${user.address}"/></td>
+            <td><c:out value="${user.firstName}"/></td>
+            <td><c:out value="${user.lastName}"/></td>
+            <td><c:out value="${user.surName}"/></td>
+            <td><c:out value="${user.email}"/></td>
             <td><c:out value="${user.phoneNumber}"/></td>
             <td><a href="/api/edit?id=<c:out value='${user.userId}'/>">Edit</a>
                 &nbsp;&nbsp;&nbsp;&nbsp; <a href="/api/delete?id=<c:out value='${user.userId}'/>">Delete</a></td>

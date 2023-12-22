@@ -11,35 +11,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-@WebServlet("/go")
-public class CreateServlet extends HttpServlet {
+
+@WebServlet("/insertUser")
+public class InsertUserServlet extends HttpServlet {
+    public static final String LIST_USERS = "/list";
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         UserService userService = FactoryService.getUserService();
 
         UserDto userDto = UserDtoBuilder.builder()
-                .firstName(req.getParameter("firstname"))
+                .firstName(req.getParameter("firstName"))
                 .lastName(req.getParameter("lastName"))
                 .surName(req.getParameter("surName"))
                 .email(req.getParameter("email"))
                 .phoneNumber(req.getParameter("phoneNumber"))
                 .build();
         User save = userService.save(userDto);
-        String name = save.getUserId();
 
-        req.setAttribute("user", save);
+//        req.setAttribute("user", save);
+        resp.sendRedirect(LIST_USERS);
 
-        try (PrintWriter out = resp.getWriter()) {
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Hello World!</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Hello " + name + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 }

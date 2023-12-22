@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'war'
     id "io.freefair.aspectj.post-compile-weaving" version "6.4.1"
 }
 
@@ -47,6 +48,10 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0'
     implementation 'org.aspectj:aspectjrt:1.9.19'
     implementation 'org.aspectj:aspectjweaver:1.9.19'
+
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+    implementation group: 'org.yaml', name: 'snakeyaml', version: '1.8'
 
     // https://mvnrepository.com/artifact/com.itextpdf/kernel
     implementation 'com.itextpdf:kernel:7.0.2'
