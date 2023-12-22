@@ -27,8 +27,8 @@
             <td><c:out value="${user.surName}"/></td>
             <td><c:out value="${user.email}"/></td>
             <td><c:out value="${user.phoneNumber}"/></td>
-            <td><a href="/api/edit?id=<c:out value='${user.userId}'/>">Edit</a>
-                &nbsp;&nbsp;&nbsp;&nbsp; <a href="/api/delete?id=<c:out value='${user.userId}'/>">Delete</a></td>
+            <td><a href="${pageContext.request.contextPath}/show?id=<c:out value='${user.userId}'/>">Edit</a>
+                &nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/delete?id=<c:out value='${user.userId}'/>">Delete</a></td>
         </tr>
     </c:forEach>
 

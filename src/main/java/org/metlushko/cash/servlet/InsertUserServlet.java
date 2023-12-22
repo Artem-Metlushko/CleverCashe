@@ -27,9 +27,8 @@ public class InsertUserServlet extends HttpServlet {
                 .email(req.getParameter("email"))
                 .phoneNumber(req.getParameter("phoneNumber"))
                 .build();
-        User save = userService.save(userDto);
+        userService.save(userDto);
 
-//        req.setAttribute("user", save);
         resp.sendRedirect(LIST_USERS);
 
     }

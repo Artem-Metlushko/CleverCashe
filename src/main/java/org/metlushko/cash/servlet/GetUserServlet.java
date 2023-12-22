@@ -1,5 +1,6 @@
 package org.metlushko.cash.servlet;
 
+import org.metlushko.cash.entity.User;
 import org.metlushko.cash.factory.FactoryService;
 import org.metlushko.cash.service.UserService;
 
@@ -10,24 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/delete")
-public class DeleteServlet extends HttpServlet {
+@WebServlet("/get")
+public class GetUserServlet extends HttpServlet {
     private UserService userService = FactoryService.getUserService();
-    public static final String LIST_USERS = "/list";
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.doDelete(req, resp);
-    }
 
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        String id = req.getParameter("id");
-
-        userService.delete(id);
-
-        resp.sendRedirect(LIST_USERS);
+        User user = userService.findById(req.getParameter("id"));
+        req.setAttribute("user", user);
+        req.getRequestDispatcher("/WEB-INF/userForm.jsp").forward(req, resp);
 
     }
 }

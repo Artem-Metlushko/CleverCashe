@@ -49,7 +49,7 @@ public class UserService {
      * @param user    The existing User entity to be updated.
      * @return The updated User entity.
      */
-    @EmailValidator
+//    @EmailValidator
     public User update(UserDto userDto, User user) {
         User updateUser = userMapper.toEntity(user, userDto);
         return userDao.update(updateUser);
