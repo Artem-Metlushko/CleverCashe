@@ -1,10 +1,13 @@
 plugins {
     id 'java'
     id 'war'
+    id 'application'
     id "io.freefair.aspectj.post-compile-weaving" version "6.4.1"
 }
 
-
+application {
+    mainClassName = 'org.metlushko.cash.Main'
+}
 
 group 'org.metlushko.cash'
 version '1.0-SNAPSHOT'
@@ -12,6 +15,12 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+
+task appRun(type: JavaExec, dependsOn: 'classes') {
+    main = 'org.metlushko.cash.Main'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
@@ -53,6 +62,8 @@ dependencies {
     implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
     implementation group: 'org.yaml', name: 'snakeyaml', version: '1.8'
 
+    implementation 'org.eclipse.jetty:jetty-webapp:11.0.13'
+
     // https://mvnrepository.com/artifact/com.itextpdf/kernel
     implementation 'com.itextpdf:kernel:7.0.2'
     implementation 'com.itextpdf:io:7.0.2'
@@ -66,6 +77,8 @@ dependencies {
 
 
 }
+
+
 
 test {
     useJUnitPlatform()
