@@ -1,17 +1,17 @@
 package org.metlushko.cash.dao.impl;
 
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.metlushko.cash.aspect.annotation.FindInCache;
 import org.metlushko.cash.aspect.annotation.RemoveInCache;
 import org.metlushko.cash.aspect.annotation.SaveCache;
 import org.metlushko.cash.aspect.annotation.UpdateInCache;
+import org.metlushko.cash.config.ConnectionProvider;
 import org.metlushko.cash.dao.Dao;
 import org.metlushko.cash.entity.User;
 import org.metlushko.cash.mapper.MapperUser;
-import org.metlushko.cash.util.ConnectionManager;
 import org.metlushko.cash.util.UuidWrapper;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,16 +22,22 @@ import java.util.Optional;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
 @Slf4j
-@AllArgsConstructor
+@Component
 public class UserDao implements Dao<String, User> {
 
     private final UuidWrapper uuidWrapper;
+    private final ConnectionProvider connectionProvider;
 
     private static final String CREATE_USER = "INSERT INTO \"user\" (user_id, firstName, lastName, surName, email, phoneNumber) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_USER = "UPDATE  \"user\" SET firstName = ?, lastName = ?, surName = ?, email = ?, phoneNumber = ? WHERE user_id = ?;";
     private static final String FIND_BY_ID = "SELECT * FROM \"user\" WHERE user_id = ?";
     private static final String DELETE_USER = "DELETE FROM \"user\" WHERE user_id = ?";
     private static final String FIND_ALL = "SELECT * FROM \"user\"";
+
+    public UserDao(final UuidWrapper uuidWrapper,final ConnectionProvider connectionProvider) {
+        this.uuidWrapper = uuidWrapper;
+        this.connectionProvider = connectionProvider;
+    }
 
     /**
      * Updates an existing {@link User} entity in the database.
@@ -45,7 +51,7 @@ public class UserDao implements Dao<String, User> {
 
         user.setUserId(uuidWrapper.randomUUID());
 
-        try (var connection = ConnectionManager.get();
+        try (var connection = connectionProvider.get();
              var ps = connection.prepareStatement(CREATE_USER, RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, user.getUserId());
@@ -78,7 +84,7 @@ public class UserDao implements Dao<String, User> {
     @Override
     @UpdateInCache
     public User update(User user) {
-        try (var connection = ConnectionManager.get();
+        try (var connection = connectionProvider.get();
              var ps = connection.prepareStatement(UPDATE_USER, RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, user.getFirstName());
@@ -106,7 +112,7 @@ public class UserDao implements Dao<String, User> {
     @Override
     @FindInCache
     public Optional<User> findById(String id) {
-        try (var connection = ConnectionManager.get();
+        try (var connection = connectionProvider.get();
              var ps = connection.prepareStatement(FIND_BY_ID)
         ) {
             ps.setString(1, id);
@@ -133,7 +139,7 @@ public class UserDao implements Dao<String, User> {
     @RemoveInCache
     @Override
     public boolean deleteById(String id) {
-        try (var connection = ConnectionManager.get();
+        try (var connection = connectionProvider.get();
              var ps = connection.prepareStatement(DELETE_USER)
         ) {
             ps.setString(1, id);
@@ -158,7 +164,7 @@ public class UserDao implements Dao<String, User> {
      */
     @Override
     public List<User> findAll() {
-        try (var connection = ConnectionManager.get();
+        try (var connection = connectionProvider.get();
              var statement = connection.createStatement()
         ) {
             ResultSet rs = statement.executeQuery(FIND_ALL);

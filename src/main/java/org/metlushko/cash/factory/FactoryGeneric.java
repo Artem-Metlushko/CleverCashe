@@ -1,3 +1,4 @@
+/*
 package org.metlushko.cash.factory;
 
 
@@ -40,3 +41,4 @@ public class FactoryGeneric {
 
 
 }
+*/

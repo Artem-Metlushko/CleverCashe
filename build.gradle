@@ -58,11 +58,17 @@ dependencies {
     implementation 'org.aspectj:aspectjrt:1.9.19'
     implementation 'org.aspectj:aspectjweaver:1.9.19'
 
-    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
-    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
-    implementation group: 'org.yaml', name: 'snakeyaml', version: '1.8'
+ /*   compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'*/
 
-    implementation 'org.eclipse.jetty:jetty-webapp:11.0.13'
+    implementation 'org.springframework:spring-core:6.1.2'
+    implementation 'org.springframework:spring-context:6.1.2'
+
+//    implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '3.1.0'
+    compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.0.0'
+    implementation group: 'jakarta.servlet.jsp.jstl', name: 'jakarta.servlet.jsp.jstl-api', version: '3.0.0'
+    implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.1'
+
 
     // https://mvnrepository.com/artifact/com.itextpdf/kernel
     implementation 'com.itextpdf:kernel:7.0.2'

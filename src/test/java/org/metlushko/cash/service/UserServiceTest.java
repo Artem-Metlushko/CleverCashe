@@ -6,7 +6,6 @@ import org.metlushko.cash.dao.impl.UserDao;
 import org.metlushko.cash.dto.UserDto;
 import org.metlushko.cash.entity.User;
 import org.metlushko.cash.mapper.UserMapper;
-import org.metlushko.cash.service.UserService;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;

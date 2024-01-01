@@ -1,12 +1,12 @@
 package org.metlushko.cash.service;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.metlushko.cash.dao.impl.UserDao;
 import org.metlushko.cash.dto.UserDto;
 import org.metlushko.cash.entity.User;
 import org.metlushko.cash.mapper.UserMapper;
 import org.metlushko.cash.validation.EmailValidator;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -14,11 +14,16 @@ import java.util.List;
  * Service class for managing users.
  */
 @Slf4j
-@AllArgsConstructor
+@Service
 public class UserService {
 
     private final UserDao userDao;
     private final UserMapper userMapper;
+
+    public UserService(final UserDao userDao,final UserMapper userMapper) {
+        this.userDao = userDao;
+        this.userMapper = userMapper;
+    }
 
     /**
      * Saves a new user.

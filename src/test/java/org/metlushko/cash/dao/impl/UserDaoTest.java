@@ -5,9 +5,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.metlushko.cash.dao.impl.UserDao;
+import org.metlushko.cash.config.ApplicationContextProvider;
+import org.metlushko.cash.config.ConnectionProvider;
 import org.metlushko.cash.entity.User;
-import org.metlushko.cash.util.ConnectionManager;
+import org.springframework.context.ApplicationContext;
 import util.TestObjectUtil;
 import util.UuidWrapperMock;
 
@@ -21,9 +22,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UserDaoTest {
+    private static ApplicationContext context = ApplicationContextProvider.getApplicationContext();
+    private static ConnectionProvider connectionProvider = context.getBean(ConnectionProvider.class);
 
     private final UuidWrapperMock uuidWrapperMock = UuidWrapperMock.getInstance("45c39ef0-2268-0000-aa93-a425be52eada");
-    private final UserDao userDao = new UserDao(uuidWrapperMock);
+    private final UserDao userDao = new UserDao(uuidWrapperMock,connectionProvider);
     private User expected;
 
     private static final String CREATE_TABLE = """
@@ -45,7 +48,10 @@ class UserDaoTest {
     @BeforeAll
     static void setUpAll() {
 
-        try (Connection connection = ConnectionManager.get();
+
+
+
+        try (Connection connection = connectionProvider.get();
              Statement statement = connection.createStatement()
         ) {
             statement.execute(CREATE_TABLE);

@@ -1,3 +1,4 @@
+/*
 package org.metlushko.cash.factory;
 
 
@@ -31,3 +32,4 @@ public class FactoryDao {
 
 
 
+*/
