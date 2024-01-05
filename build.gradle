@@ -1,5 +1,12 @@
 plugins {
     id 'java'
+    id 'war'
+    id 'application'
+    id "io.freefair.aspectj.post-compile-weaving" version "6.4.1"
+}
+
+application {
+    mainClassName = 'org.metlushko.cash.Main'
 }
 
 group 'org.metlushko.cash'
@@ -9,10 +16,75 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+task appRun(type: JavaExec, dependsOn: 'classes') {
+    main = 'org.metlushko.cash.Main'
+    classpath = sourceSets.main.runtimeClasspath
 }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+ext {
+    junitVersion = '5.9.2'
+    lombokVersion = '1.18.26'
+    mapstructVersion = '1.5.3.Final'
+    mockitoVersion = '5.2.0'
+}
+
+dependencies {
+    annotationProcessor 'io.soabase.record-builder:record-builder-processor:35'
+    compileOnly 'io.soabase.record-builder:record-builder-core:35'
+
+    implementation "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+    testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+
+    implementation  "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
+    implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.20.0'
+    implementation 'org.aspectj:aspectjrt:1.9.19'
+    implementation 'org.aspectj:aspectjweaver:1.9.19'
+
+ /*   compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'*/
+
+    implementation 'org.springframework:spring-core:6.1.2'
+    implementation 'org.springframework:spring-context:6.1.2'
+
+//    implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '3.1.0'
+    compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.0.0'
+    implementation group: 'jakarta.servlet.jsp.jstl', name: 'jakarta.servlet.jsp.jstl-api', version: '3.0.0'
+    implementation group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.1'
+
+
+    // https://mvnrepository.com/artifact/com.itextpdf/kernel
+    implementation 'com.itextpdf:kernel:7.0.2'
+    implementation 'com.itextpdf:io:7.0.2'
+    implementation 'com.itextpdf:layout:7.0.2'
+    implementation 'com.itextpdf:forms:7.0.2'
+    implementation 'com.itextpdf:pdfa:7.0.2'
+    implementation 'com.itextpdf:sign:7.0.2'
+    implementation 'com.itextpdf:barcodes:7.0.2'
+    implementation 'com.itextpdf:font-asian:7.0.2'
+    implementation 'com.itextpdf:hyph:7.0.2'
+
+
+}
+
+
 
 test {
     useJUnitPlatform()
