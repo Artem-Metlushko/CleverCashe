@@ -1,3 +1,4 @@
+/*
 package org.metlushko.cash.util;
 
 import lombok.experimental.UtilityClass;
@@ -29,3 +30,4 @@ public final class PropertiesUtil {
 
 
 }
+*/

@@ -1,4 +1,3 @@
-/*
 package org.metlushko.cash.pdf;
 
 import com.itextpdf.kernel.geom.AffineTransform;
@@ -14,22 +13,26 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import org.metlushko.cash.entity.User;
-import org.metlushko.cash.util.PdfPrintManager;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-
+@Component
 public class PdfPrint {
+    @Value("${pdf.output}")
+    private static String pdfOutput;
+
+    @Value("${pdf.layer}")
+    private static String pdfLayer ;
 
     public static void createReport(List<User> list) {
 
+        PdfWriter pdfWriter = getPdfWriter(pdfOutput);
 
-        String output = PdfPrintManager.getPathPdfOutput();
-        PdfWriter pdfWriter = getPdfWriter(output);
 
-        String pathPdfLayer = PdfPrintManager.getPathPdfLayer();
-        PdfReader pdfReader = getPdfReader(pathPdfLayer);
+        PdfReader pdfReader = getPdfReader(pdfLayer);
 
         PdfDocument pdfDocument = new PdfDocument(pdfWriter);
 
@@ -122,4 +125,3 @@ public class PdfPrint {
 
 
 }
-*/

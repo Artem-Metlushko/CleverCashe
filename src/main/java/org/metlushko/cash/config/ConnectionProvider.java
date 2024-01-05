@@ -1,23 +1,23 @@
 package org.metlushko.cash.config;
 
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-@Getter
-@Configuration
+@Component
+@PropertySource("classpath:application.properties")
 public class ConnectionProvider {
-    @Value("${db.url:jdbc:postgresql://localhost:15432/ironbank}")
+    @Value("${db.url}")
     private String uri;
-    @Value("${db.username:postgres}")
+    @Value("${db.username}")
     private String username;
-    @Value("${db.password:1234}")
+    @Value("${db.password}")
     private String password;
-    @Value("${datasource.driver-class-name:org.postgresql.Driver}")
+    @Value("${datasource.driver-class-name}")
     private String driverClassName;
 
     /**

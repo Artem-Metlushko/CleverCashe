@@ -8,4 +8,6 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application.properties")
 @ComponentScan(basePackages = "org.metlushko.cash")
 public class ApplicationConfig {
+
+
 }

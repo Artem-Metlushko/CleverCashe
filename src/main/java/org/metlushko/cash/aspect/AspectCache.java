@@ -6,14 +6,23 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.metlushko.cash.cache.Cache;
 import org.metlushko.cash.entity.User;
-import org.metlushko.cash.util.CacheManager;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
 
 @Aspect
+@Component
 public class AspectCache {
-    private final Cache<User, String> cache = CacheManager.getCacheType();
+    @Qualifier("CasheProvider")
+    private final Cache<User, String> cache;
+
+
+    public AspectCache(Cache<User, String> cache) {
+        this.cache = cache;
+    }
+
 
     @Pointcut("@annotation(org.metlushko.cash.aspect.annotation.SaveCache)")
     public void save() {
